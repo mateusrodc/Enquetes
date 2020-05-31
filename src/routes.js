@@ -9,6 +9,7 @@ routes.post('/login',LoginController.create);
 
 routes.get('/pessoas',PessoaController.index);
 routes.post('/pessoas',PessoaController.create);
+routes.put('/pessoas/:id',PessoaController.updatePessoa);
 
 routes.get('/enquetes',EnqueteController.index);
 routes.post('/enquetes',EnqueteController.create);

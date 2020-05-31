@@ -1,9 +1,9 @@
-const crypto = require("crypto")
+const crypto = require("crypto");
 const connection = require('../database/connection');
 
 module.exports={
     async index(request,response){
-        const pessoas = await connection('pessoas').select('id','apelido');
+        const pessoas = await connection('pessoas').select('id','apelido','senha');
         return response.json(pessoas);
     },
     async create(request,response){
@@ -16,10 +16,23 @@ module.exports={
             senha,
         });
         return response.json({
-            apelido
+            apelido,
         });
     },
-    async update(request,response){
+    async updatePessoa(request,response){
         
+        const {id} = request.params;
+        const{nome,apelido,senha} = request.body;
+        
+        
+        await connection('pessoas').where('id',id).update({
+            nome:nome,
+            apelido:apelido,
+            senha:senha
+        });
+        return response.json({
+            nome,
+            apelido,
+        })
     }
 };

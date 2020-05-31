@@ -2,7 +2,7 @@ const connection = require('../database/connection');
 module.exports={
     async create(request,response){
         const{apelido,senha} = request.body;
-        const pessoa = await connection('pessoas').where('apelido',apelido).where('senha',senha).select('apelido').first();
+        const pessoa = await connection('pessoas').where('apelido',apelido).where('senha',senha).select('id').first();
         
         
         if(!pessoa){
